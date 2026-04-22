@@ -1,12 +1,18 @@
 # Nim-Cli
 
-`Nim-Cli` 是用 `C# / .NET 10` 開發的 terminal agent，provider 目前以 `NVIDIA NIM` 為主，並提供：
+`Nim-Cli` 是用 `C# / .NET 10` 開發的 terminal agent，provider 目前以 `NVIDIA Inference Microservices (NIM)` 為主，並提供：
 
 - `nim-cli`：CLI 入口
 - `nim-tui`：TUI 入口
 - shared core：CLI / TUI 共用 `AgentOrchestrator`、`ContextBuilder`、`ToolRegistry`、`ToolPolicyService`、`CodingPipeline`、`SessionState` / `SessionManager`
 
 它的目標不是單純聊天，而是可處理專案分析、build / run、browser screenshot、DB 查詢、git / ftp、MCP 與 coding workflow 的 Windows terminal agent。
+
+整體設計上，`Nim-Cli` 把 `NVIDIA Inference Microservices (NIM)` 的模型推論能力，和 Windows 上常見的工程工具鏈整合在同一個 CLI / TUI shared core 內，讓同一個 session 可以連續完成分析、執行工具、驗證結果與整理 summary / audit。
+
+和只提供單一路徑聊天介面的工具不同，`Nim-Cli` 比較強調「工程工作流可連續完成」：你可以在同一個 session 內先做 repo 分析、再跑 build / test、再用 browser 做截圖驗證、最後整理成 summary 或進一步走 git / MCP / TUI workflow。這也是為什麼它同時提供 `nim-cli` 與 `nim-tui`，但底層仍維持同一套 orchestrator、policy、context、session 與 tool registry。
+
+在 coding workflow 上，專案也吸收了 `repo map`、`plan before edit`、`build/test verify`、`commit summary` 這類偏 `aider` 風格的做法；在工具面則補上 browser、DB、FTP、Git、MCP 等 terminal agent 常見需求。因此它比較接近「面向 Windows 開發與維運場景的通用 agent shell」，而不是單純把模型 API 接到聊天視窗上。
 
 ## 目前功能
 
@@ -30,7 +36,7 @@
 - `PowerShell 7` (`pwsh`)
 - `.NET 10 SDK`
 - `Git`
-- 網路可連到 NVIDIA NIM API
+- 網路可連到 `NVIDIA Inference Microservices (NIM)` API
 
 依功能可能需要：
 
@@ -160,7 +166,13 @@ pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ".\src\Nim-Cli\bin\Debug\n
 dotnet build ".\Nim-Cli.slnx"
 ```
 
-## 設定 NVIDIA NIM
+## 設定 NVIDIA Inference Microservices (NIM)
+
+如果你還沒有註冊或申請 NIM，可以先參考這篇教學：
+
+- https://donmatw.blogspot.com/2026/03/nvidia-build-opencode-free-ai-coding-guide.html
+
+上面的文章可作為註冊 `NVIDIA Inference Microservices (NIM)`、取得 API key 與理解基本使用流程的參考。
 
 ### 1. 建立本地 secret 設定檔
 
@@ -176,7 +188,7 @@ Copy-Item ".\src\Nim-Cli\appsettings.secret.example.json" ".\src\Nim-Cli\appsett
 Copy-Item ".\src\NimTui.App\appsettings.secret.example.json" ".\src\NimTui.App\appsettings.secret.json"
 ```
 
-然後把 `ApiKey` 改成你的 NIM key。
+然後把 `ApiKey` 改成你的 `NVIDIA Inference Microservices (NIM)` API key。
 
 ### 2. 設定檔位置與 precedence
 
@@ -477,3 +489,11 @@ pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ".\src\Nim-Cli\bin\Debug\n
 - `appsettings.secret.json` 不應提交到 git
 - `appsettings.secret.example.json` 才是可提交範本
 - 如果真實 API key 曾經出現在對話、截圖、日誌或其他外部可見位置，應直接視為已暴露並輪替
+
+## 免責條款
+
+- 本專案以「現況提供（as is）」方式提供，不保證適用於任何特定用途，也不保證在所有環境、所有外部服務或所有工作流程下都能穩定運作。
+- 使用者需自行負責外部服務帳號、`NVIDIA Inference Microservices (NIM)` API key、相關費用、權限設定、法規遵循與資料安全。
+- 本專案雖已對 `git push`、`ftp upload`、shell、DB 等高風險路徑加入 approval、dry-run 或 safety boundary，但使用者仍應在實際執行前自行判斷風險並確認操作後果。
+- 若因使用本專案導致資料遺失、服務中斷、成本增加、憑證暴露、環境損壞或其他直接／間接損失，專案作者與貢獻者不承擔責任。
+- 本專案與 `NVIDIA`、`Google Gemini CLI`、`aider` 或其他第三方服務／商標之間，除文件中所述的技術參考與相容目標外，沒有官方背書、附屬或代理關係。
