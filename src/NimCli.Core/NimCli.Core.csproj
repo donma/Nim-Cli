@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\NimCli.Contracts\NimCli.Contracts.csproj" />
+    <ProjectReference Include="..\NimCli.Provider.Abstractions\NimCli.Provider.Abstractions.csproj" />
+    <ProjectReference Include="..\NimCli.Tools.Abstractions\NimCli.Tools.Abstractions.csproj" />
+    <ProjectReference Include="..\NimCli.Infrastructure\NimCli.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

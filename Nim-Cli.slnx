@@ -1,0 +1,21 @@
+<Solution>
+  <Project Path="src/Nim-Cli/Nim-Cli.csproj" />
+  <Project Path="src/NimCli.Contracts/NimCli.Contracts.csproj" />
+  <Project Path="src/NimCli.Provider.Abstractions/NimCli.Provider.Abstractions.csproj" />
+  <Project Path="src/NimCli.Tools.Abstractions/NimCli.Tools.Abstractions.csproj" />
+  <Project Path="src/NimCli.Infrastructure/NimCli.Infrastructure.csproj" />
+  <Project Path="src/NimCli.Provider.Nim/NimCli.Provider.Nim.csproj" />
+  <Project Path="src/NimCli.Core/NimCli.Core.csproj" />
+  <Project Path="src/NimCli.Tools.Shell/NimCli.Tools.Shell.csproj" />
+  <Project Path="src/NimCli.Tools.Web/NimCli.Tools.Web.csproj" />
+  <Project Path="src/NimCli.Tools.Browser/NimCli.Tools.Browser.csproj" />
+  <Project Path="src/NimCli.Tools.Db/NimCli.Tools.Db.csproj" />
+  <Project Path="src/NimCli.Tools.Git/NimCli.Tools.Git.csproj" />
+  <Project Path="src/NimCli.Tools.Ftp/NimCli.Tools.Ftp.csproj" />
+  <Project Path="src/NimCli.Coding/NimCli.Coding.csproj" />
+  <Project Path="src/NimCli.Mcp/NimCli.Mcp.csproj" />
+  <Project Path="src/NimTui.App/NimTui.App.csproj" />
+  <Project Path="tests/NimCli.Core.Tests/NimCli.Core.Tests.csproj" />
+  <Project Path="tests/NimCli.Integration.Tests/NimCli.Integration.Tests.csproj" />
+  <Project Path="tests/NimTui.Tests/NimTui.Tests.csproj" />
+</Solution>

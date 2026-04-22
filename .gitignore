@@ -1,0 +1,40 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+_ReSharper*/
+*.DotSettings.user
+
+# Build output
+artifacts/
+publish/
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Secrets / config overrides
+**/appsettings.secret.json
+**/appsettings.Local.json
+nim-cli-config.json
+*.key
+
+# Playwright
+playwright/.local-chromium/
+playwright-report/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# OpenCode workspace
+.opencode/

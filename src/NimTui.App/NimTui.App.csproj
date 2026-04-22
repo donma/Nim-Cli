@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nim-Cli\Nim-Cli.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Nim-Cli\appsettings.json" Link="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\Nim-Cli\appsettings.secret.json" Link="appsettings.secret.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\Nim-Cli\appsettings.secret.json')" />
+    <Content Include="appsettings.secret.example.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Nim-Tui</AssemblyName>
+    <RootNamespace>NimTui.App</RootNamespace>
+  </PropertyGroup>
+
+</Project>
