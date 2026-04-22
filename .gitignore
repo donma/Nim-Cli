@@ -10,6 +10,7 @@ _ReSharper*/
 # Build output
 artifacts/
 publish/
+**/TestResults/
 
 # NuGet
 *.nupkg
